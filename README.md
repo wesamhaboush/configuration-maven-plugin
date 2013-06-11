@@ -3,11 +3,11 @@ configuration-maven-plugin
 
 generate and deploy configuration files for different environments for maven projects. For example, if you have dev, qa, staging, and prod environments that you want to deploy different configurations for in a maven pom module WildSoftware, then you'd be able to produce the following artifacts:
 
-WildSoftware-1.1.jar
-WildSoftware-1.1-dev-config.jar
-WildSoftware-1.1-qa-config.jar
-WildSoftware-1.1-staging-config.jar
-WildSoftware-1.1-prod-config.jar
+      WildSoftware-1.1.jar
+      WildSoftware-1.1-dev-config.jar
+      WildSoftware-1.1-qa-config.jar
+      WildSoftware-1.1-staging-config.jar
+      WildSoftware-1.1-prod-config.jar
 
 
 They also will all be deployed as part of the vanilla `deploy` phase without any special maven configuration.
