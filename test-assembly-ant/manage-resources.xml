@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="manage-resources" xmlns:compress="antlib:org.apache.ant.compress">
+    <path id="project.class.path">
+        <path path="${runtime-classpath}"/>
+    </path>
+    <taskdef resource="net/sf/antcontrib/antcontrib.properties" classpathref="project.class.path"/>
+    <taskdef uri="antlib:org.apache.ant.compress"
+             resource="org/apache/ant/compress/antlib.xml"
+             classpathref="project.class.path"/>
+
+    <target name="manage-resources">
+
+        <mkdir dir="./target/${env}"/>
+        <!--<mkdir dir="../target/${env}"/>-->
+
+        <!--load environment properties-->
+        <loadproperties srcFile="./src/main/config/${env}.properties"/>
+                                
+        <!-- add filtered resources to local target dir to tar.gz into both current module's and parent's zips -->
+        <copy todir="./target/${env}">
+            <filterchain>
+                <expandproperties/>
+            </filterchain>     
+            <fileset dir="./src/main/resources" />
+        </copy>
+        <!--<copy todir="../target/${env}">-->
+            <!--<filterchain>-->
+                <!--<expandproperties/>-->
+            <!--</filterchain>-->
+            <!--<fileset dir="./src/main/resources" />-->
+        <!--</copy>-->
+
+        <!-- now add current modules config files into module project config jar -->
+        <jar destfile="./target/${project.artifactId}-${project.version}-${env}-config.jar"
+             basedir="./target/${env}"
+             update="true"/>
+
+        <!-- now add the super poms values into a tar.gz -->
+        <!--<compress:gzip>-->
+            <!--<compress:tar>-->
+                <!--<fileset dir="../target/${env}" includes="*.*" />-->
+            <!--</compress:tar>-->
+            <!--<dest>-->
+                <!--<file file="../target/${project.parent.artifactId}-${project.version}-${env}-config.tar.gz"/>-->
+            <!--</dest>-->
+        <!--</compress:gzip>-->
+
+
+    </target>
+</project>

@@ -1,0 +1,68 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>co.uk.codebreeze</groupId>
+  <artifactId>test-configuration-plugin</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <packaging>jar</packaging>
+
+  <name>test-configuration-plugin</name>
+  <url>http://maven.apache.org</url>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.11</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+  <build>
+      <pluginManagement>
+          <plugins>
+              <plugin>
+                  <groupId>co.uk.codebreeze</groupId>
+                  <artifactId>configuration-maven-plugin</artifactId>
+                  <version>1.0-SNAPSHOT</version>
+                  <executions>
+                      <execution>
+                          <id>process-configuration-directories</id>
+                          <phase>process-resources</phase>
+                          <goals>
+                              <goal>generate</goal>
+                          </goals>
+                          <configuration>
+                              <resourcesDir>src/main/templates</resourcesDir>
+                              <filtersDir>src/main/config</filtersDir>
+                              <includes>
+                                  <include>**/*.properties</include>
+                              </includes>
+                              <allowedMissingProperties>
+                                  <allowedMissingProperty>catalina.home</allowedMissingProperty>
+                              </allowedMissingProperties>
+                          </configuration>
+                      </execution>
+                      <execution>
+                          <id>jar-configuration-artifacts</id>
+                          <phase>package</phase>
+                          <goals>
+                              <goal>package</goal>
+                          </goals>
+                      </execution>
+                  </executions>
+              </plugin>
+          </plugins>
+      </pluginManagement>
+      <plugins>
+          <plugin>
+              <groupId>co.uk.codebreeze</groupId>
+              <artifactId>configuration-maven-plugin</artifactId>
+          </plugin>
+      </plugins>
+  </build>
+</project>
