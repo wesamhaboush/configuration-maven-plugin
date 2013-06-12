@@ -71,7 +71,7 @@ A simple minimalist example is here:
 
 # Notes
 
-This project has also 4 other sample ways to achieve something similar using various other mechanisms from the maven world:
+This project has also 4 other sample projects to achieve something similar using various other mechanisms from the maven world:
 
 * Using Ant
 * Using Maven Profiles
@@ -79,4 +79,4 @@ This project has also 4 other sample ways to achieve something similar using var
 * Using Maven Classifiers
 * Using Environment Variables
 
-Try all of them before deciding what to go with.
+Try all of them before deciding what to go with. For a discussion on the subject, see [Configuration Management in Maven](http://www.codebreeze.co.uk/blog/2013/06/12/environment-configuration-management-in-maven/ "Configuration Management in Maven")
